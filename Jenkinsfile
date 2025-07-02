@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone') {
-            steps {
-                git branch: 'main', url: 'https://github.com/akashsakore/Task-Manager-AWS-Jenkins-Docker.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME .'
@@ -20,10 +14,8 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sh '''
-                docker rm -f task-manager || true
-                docker run -d --name task-manager -p 5000:5000 $IMAGE_NAME
-                '''
+                sh 'docker rm -f task-manager || true'
+                sh 'docker run -d --name task-manager -p 5000:5000 $IMAGE_NAME'
             }
         }
     }
