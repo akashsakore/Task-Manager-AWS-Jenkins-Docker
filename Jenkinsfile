@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/akashsakore/Task-Manager-AWS-Jenkins-Docker.git'
+                git branch: 'main', url: 'https://github.com/akashsakore/Task-Manager-AWS-Jenkins-Docker.git'
             }
         }
 
